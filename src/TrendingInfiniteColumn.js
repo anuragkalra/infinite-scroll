@@ -1,11 +1,11 @@
 import React from 'react';
-import './TrendingInfinite.css';
+import './TrendingInfiniteColumn.css';
 
-class TrendingInfinite extends React.Component {
+class TrendingInfiniteColumn extends React.Component {
   state = {
     items : [],
     per: 16,
-    page: 0,
+    page: 1,
     totalPages: null,
     scrolling: false
   }
@@ -45,34 +45,19 @@ class TrendingInfinite extends React.Component {
     }), this.loadItems)
   }
 
-  generateRowContents(items) {
-    let content = []
-    let cols = 4;
-    let rows = items.length / cols;
-    for(let i = 0; i < cols; i++) {
-      let children = []
-      for(let j = 0; j < rows; j++) {
-        let index = i * rows + j;
-        let element = (
-          <div className="container">
-            <img key={items[index].id} src={items[index].images.fixed_height.url} alt={items[index].title} className="image"/>
-            <div className="overlay">
-              <div className="text">{items[index].title}</div>
-            </div>
-          </div>
-        )
-        children.push(element)
-      }
-      content.push(<div className="column">{children}</div>)
-    }
-    return content;
-  }
 
   render() {
     return (
       <div>
-        <div className="row">
-          {this.generateRowContents(this.state.items)}
+        <div className="column">
+          <ul>
+            {
+              this.state.items.map(item =>
+                <li key={item.id}>
+                  <img src={item.images.fixed_height.url} alt={item.title}/>
+                </li>)
+            }
+          </ul>
         </div>
         <a onClick={this.loadMore}>Load More</a>
       </div>
@@ -80,4 +65,4 @@ class TrendingInfinite extends React.Component {
   }
 }
 
-export default TrendingInfinite;
+export default TrendingInfiniteColumn;
