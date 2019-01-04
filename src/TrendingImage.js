@@ -54,7 +54,7 @@ class TrendingImage extends Component {
 
     return (
       <div onMouseOver={this.mouseOver} onMouseLeave={this.mouseOut}>
-        <img src={this.props.item.images.preview_gif.url} alt={this.props.item.title}/>
+        <img src={this.props.item.images.fixed_height.url} alt={this.props.item.title}/>
         {subtitle}
       </div>
     )
