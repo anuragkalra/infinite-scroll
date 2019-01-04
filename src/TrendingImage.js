@@ -24,6 +24,14 @@ class TrendingImage extends Component {
 
   render() {
     let subtitle;
+    let userName;
+    if(this.props.showUsername && this.props.item.username) {
+        userName = (
+          <div>
+            Username: {this.props.item.username}
+          </div>
+        )
+    }
     if(this.state.hover) {
       subtitle = (
         <div>
@@ -31,6 +39,8 @@ class TrendingImage extends Component {
           Title: {this.props.item.title}
           <br />
           Rating: {this.props.item.rating}
+          <br />
+          {userName}
           <br />
           <a href={this.props.item.url} target="_blank" rel="noopener noreferrer">See on Giphy!</a>
           </figcaption>

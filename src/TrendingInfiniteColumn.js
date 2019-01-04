@@ -1,4 +1,7 @@
 import React from 'react';
+import Experiment from "react-ab-test/lib/Experiment";
+import Variant from "react-ab-test/lib/Variant";
+import emitter from "react-ab-test/lib/emitter";
 import TrendingImage from './TrendingImage';
 import './TrendingInfiniteColumn.css';
 
@@ -58,19 +61,44 @@ class TrendingInfiniteColumn extends React.Component {
   render() {
     return (
       <div>
-        <div className="column">
-          <ul className="gifList">
-            {
-              this.state.items.map(item =>
-                <li key={item.id}>
-                  <TrendingImage name={item.title} item={item}/>
-                </li>)
-            }
-          </ul>
-        </div>
+        <Experiment ref="experiment" name="My Example" userIdentifier={this.props.userIdentifier}>
+          <Variant name="A">
+            <div className="column">
+              <ul className="gifList">
+                {
+                  this.state.items.map(item =>
+                    <li key={item.id}>
+                      <TrendingImage item={item}/>
+                    </li>)
+                }
+              </ul>
+            </div>
+          </Variant>
+          <Variant name="B">
+            <div className="column">
+              <ul className="gifList">
+                {
+                  this.state.items.map(item =>
+                    <li key={item.id}>
+                      <TrendingImage showUsername="true" item={item}/>
+                    </li>)
+                }
+              </ul>
+            </div>
+          </Variant>
+        </Experiment>
       </div>
     )
   }
 }
+// Called when the experiment is displayed to the user.
+emitter.addPlayListener(function(experimentName, variantName){
+  console.log("Displaying experiment ‘" + experimentName + "’ variant ‘" + variantName + "’");
+});
+
+// Called when a 'win' is emitted, in this case by emitter.emitWin()
+emitter.addWinListener(function(experimentName, variantName){
+  console.log("Variant ‘" + variantName + "’ of experiment ‘" + experimentName + "’ was clicked");
+});
 
 export default TrendingInfiniteColumn;
