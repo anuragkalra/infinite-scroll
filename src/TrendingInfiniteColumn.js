@@ -61,7 +61,7 @@ class TrendingInfiniteColumn extends React.Component {
   render() {
     return (
       <div>
-        <Experiment ref="experiment" name="My Example" userIdentifier={this.props.userIdentifier}>
+        <Experiment ref="experiment" name="usernameExperiment1" userIdentifier={this.props.userIdentifier}>
           <Variant name="A">
             <div className="column">
               <ul className="gifList">
