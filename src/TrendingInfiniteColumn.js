@@ -96,9 +96,4 @@ emitter.addPlayListener(function(experimentName, variantName){
   console.log("Displaying experiment ‘" + experimentName + "’ variant ‘" + variantName + "’");
 });
 
-// Called when a 'win' is emitted, in this case by emitter.emitWin()
-emitter.addWinListener(function(experimentName, variantName){
-  console.log("Variant ‘" + variantName + "’ of experiment ‘" + experimentName + "’ was clicked");
-});
-
 export default TrendingInfiniteColumn;

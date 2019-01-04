@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import emitter from "react-ab-test/lib/emitter";
 class TrendingImage extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,10 @@ class TrendingImage extends Component {
     );
   }
 
+  onButtonClick(e){
+    emitter.emitWin("Win Emitted");
+  }
+
   render() {
     let subtitle;
     let userName;
@@ -42,7 +46,7 @@ class TrendingImage extends Component {
           <br />
           {userName}
           <br />
-          <a href={this.props.item.url} target="_blank" rel="noopener noreferrer">See on Giphy!</a>
+          <a href={this.props.item.url} target="_blank" rel="noopener noreferrer" onClick={this.onButtonClick}>See on Giphy!</a>
           </figcaption>
         </div>
       )
@@ -56,5 +60,10 @@ class TrendingImage extends Component {
     )
   }
 }
+
+// Called when a 'win' is emitted, in this case by emitter.emitWin()
+emitter.addWinListener(function(experimentName, variantName){
+  console.log("Variant ‘" + variantName + "’ of experiment ‘" + experimentName + "’ was clicked");
+});
 
 export default TrendingImage;
