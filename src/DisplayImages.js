@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './DisplayImages.css'
+import TrendingImage from './TrendingImage';
 
 class DisplayImages extends Component {
     render() {
@@ -10,7 +11,7 @@ class DisplayImages extends Component {
             {
               this.props.items.map(item =>
                 <li key={item.id}>
-                  <img src={item.images.fixed_height.url} alt={item.title}/>
+                  <TrendingImage name={item.title} item={item}/>
                 </li>)
             }
           </ul>
