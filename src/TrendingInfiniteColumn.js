@@ -4,7 +4,7 @@ import './TrendingInfiniteColumn.css';
 class TrendingInfiniteColumn extends React.Component {
   state = {
     items : [],
-    per: 20,
+    per: 30,
     page: 1,
     totalPages: null,
     scrolling: false
@@ -24,7 +24,7 @@ class TrendingInfiniteColumn extends React.Component {
     const lastLi = document.querySelector('ul.gifList > li:last-child')
     const lastLiOffset = lastLi.offsetTop + lastLi.clientHeight
     const pageOffset = window.pageYOffset + window.innerHeight
-    var bottomOffset = 20
+    var bottomOffset = 200
     if(pageOffset > lastLiOffset - bottomOffset) this.loadMore()
 
   }

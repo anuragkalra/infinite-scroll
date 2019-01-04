@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import TrendingInfiniteColumn from './TrendingInfiniteColumn';
+import SearchContainer from './SearchContainer';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <TrendingInfiniteColumn />
+        <SearchContainer />
       </div>
     )
   }
