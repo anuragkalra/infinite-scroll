@@ -31,6 +31,8 @@ class TrendingImage extends Component {
           Title: {this.props.item.title}
           <br />
           Rating: {this.props.item.rating}
+          <br />
+          <a href={this.props.item.url} target="_blank" rel="noopener noreferrer">See on Giphy!</a>
           </figcaption>
         </div>
       )

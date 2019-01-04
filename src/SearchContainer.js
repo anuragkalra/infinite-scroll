@@ -14,12 +14,17 @@ class SearchContainer extends React.Component {
   }
 
   fetchResults(props) {
-    const url_no_query = "https://api.giphy.com/v1/gifs/search?api_key=0d05b586e3ff4884b6dc9837d9601726&limit=10&offset=0&rating=G&lang=fr&q=";
-    fetch(url_no_query+this.state.value)
+    const url = "https://api.giphy.com/v1/gifs/search?api_key="
+    const api_key = "0d05b586e3ff4884b6dc9837d9601726"
+    const limit = 20;
+    const offset = 0;
+    const query = this.state.value;
+    const request = `${url}${api_key}&limit=${limit}&offset=${offset}&q=${query}`;
+    fetch(request)
       .then(result => result.json())
-      .then(res => {
+      .then(json => {
         this.setState({
-          items : res.data,
+          items : json.data,
           isLoaded: true
         });
     })
