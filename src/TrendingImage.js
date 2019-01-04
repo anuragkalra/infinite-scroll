@@ -29,6 +29,7 @@ class TrendingImage extends Component {
   render() {
     let subtitle;
     let userName;
+    //shows username if showUsername flag is true (sent via props)
     if(this.props.showUsername && this.props.item.username) {
         userName = (
           <div>
@@ -36,6 +37,7 @@ class TrendingImage extends Component {
           </div>
         )
     }
+    //subtitle is constructed when the element is in a hover state
     if(this.state.hover) {
       subtitle = (
         <div>

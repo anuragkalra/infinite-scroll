@@ -16,6 +16,7 @@ class SearchContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //Calls API
   fetchResults(props) {
     const url = "https://api.giphy.com/v1/gifs/search?api_key="
     const api_key = "0d05b586e3ff4884b6dc9837d9601726"
@@ -33,6 +34,7 @@ class SearchContainer extends React.Component {
     })
   }
 
+  //Used as part of A/B test. Emits one win
   onButtonClick(e){
     emitter.emitWin("Win Emitted");
   }
@@ -42,15 +44,19 @@ class SearchContainer extends React.Component {
   }
 
   render() {
+    //Styles for both Variants in Experiment
     const buttonStyle1 = {
       backgroundColor: '#4CAF50'
     }
-
     const buttonStyle2 = {
       backgroundColor: '#AABBFF'
     }
+
+    //contentC is used in Variant C, contentD is used in Variant D
+    //We programmatically build each content{C,D} element and use it in the correct variant of the experiment
     let contentC;
     let contentD;
+    //Show trending content only when search box is empty
     if(this.state.value.length === 0){
       contentC = (
         <div>
@@ -83,6 +89,8 @@ class SearchContainer extends React.Component {
         </div>
       )
     }
+    //when the searchBox is non-empty, we prepare to send a request and make a request to the search API endpoint on pressing submit
+    //if the searchBox is in focus, we set items to an empty array
     else {
       contentC = (
         <div className="form-inline" onFocus={() => this.setState({items:[]})}>
