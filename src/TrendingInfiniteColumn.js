@@ -1,4 +1,5 @@
 import React from 'react';
+import TrendingImage from './TrendingImage';
 import './TrendingInfiniteColumn.css';
 
 class TrendingInfiniteColumn extends React.Component {
@@ -62,12 +63,11 @@ class TrendingInfiniteColumn extends React.Component {
             {
               this.state.items.map(item =>
                 <li key={item.id}>
-                  <img src={item.images.fixed_height.url} alt={item.title}/>
+                  <TrendingImage name={item.title} item={item}/>
                 </li>)
             }
           </ul>
         </div>
-        <a onClick={this.loadMore}>Load More</a>
       </div>
     )
   }

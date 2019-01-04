@@ -16,7 +16,7 @@ class SearchContainer extends React.Component {
   fetchResults(props) {
     const url_no_query = "https://api.giphy.com/v1/gifs/search?api_key=0d05b586e3ff4884b6dc9837d9601726&limit=10&offset=0&rating=G&lang=fr&q=";
     fetch(url_no_query+this.state.value)
-      .then(result=>result.json())
+      .then(result => result.json())
       .then(res => {
         this.setState({
           items : res.data,
@@ -30,8 +30,7 @@ class SearchContainer extends React.Component {
   }
 
   render() {
-    const {isLoaded} = this.state
-    if(this.state.value.length == 0){
+    if(this.state.value.length === 0){
       return (
         <div>
           <input type="text" placeholder="Search Gifs" id="search" value={this.state.value} onChange={this.handleChange} className="form-control "/>

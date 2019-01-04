@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
+import './DisplayImages.css'
 
 class DisplayImages extends Component {
     render() {
       return (
-        <div className="ImageHolder">
-          {
-            this.props.items.length > 0 &&
-            this.props.items.map(item =>
-              (
-                <img src={item.images.preview_gif.url} key={item.id} alt={item.title} width="200px" height="200px" />
-              )
-            )
-          }
+        <div className="column">
+          <ul className="gifList">
+            {
+              this.props.items.map(item =>
+                <li key={item.id}>
+                  <img src={item.images.fixed_height.url} alt={item.title}/>
+                </li>)
+            }
+          </ul>
         </div>
       );
     }
